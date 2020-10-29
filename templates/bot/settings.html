@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/empire.css' %}">
+    <main>
+        <h2>
+            Bot Settings {{ universum }}
+        </h2>
+        <form class="whiteborder" method="post">
+            {% csrf_token %}
+
+            {% if message %}
+                {% for class, text in message.items %}
+                    <label class="{{ class }}">{{ text }}</label>
+                {% endfor %}
+            {% endif %}
+
+            <label class="h1">
+                You cant turn on the bot. It is on Developement
+                <label class="switch">
+                    {{ form.active }}
+                    <div class="slider"></div>
+                </label>
+            </label>
+            <label>Repead every min</label>
+            {{ form.repeat }}
+            <label>next repeat Time: {{ nextRepeat.nextRepeat }} CET. The bot will always wait minimum of 10 min.</label>
+            <label>Base Planet name on wich the bot will operate off</label>
+            {{ form.base }}
+
+            <label class="h2">
+                Save
+                <label class="switch">
+                    {{ form.saiver }}
+                    <div class="slider"></div>
+                </label>
+            </label>
+            <label>
+                If attacked it will park all available fleet from the planet and moon away to another celestial.
+                It prefers to send to an moon if that fails it will park the fleet to another Planet.
+                Make sure you have enough deuterium to send your fleet away in an emergency. At this time
+                it wont take resources with it.
+            </label>
+
+            <label class="h2">
+                Expedition
+                <label class="switch">
+                    {{ form.expedition }}
+                <div class="slider"></div>
+                </label>
+            </label>
+            <label>
+                <div class="table">
+                    <div class="ships h4">
+                        <b>Fleet</b>
+                        {% include 'empire/tableheader/fleetheader.html' %}
+                    </div>
+                    <div class="ships">
+                        <b>amount</b>
+                        {% for ship in expeditionFleet %}
+                            {{ ship }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </label>
+
+            <label class="h2">
+                Raider
+                <label class="switch">
+                    {{ form.raider }}
+                    <div class="slider"></div>
+                </label>
+            </label>
+            <label>Define which Fleet the raider should be send</label>
+            <label>
+                <div class="table">
+                    <div class="ships h4">
+                        <b>Fleet</b>
+                        {% include 'empire/tableheader/fleetheader.html' %}
+                    </div>
+                    <div class="ships">
+                        <b>amount</b>
+                        {% for ship in raiderFleet %}
+                            {{ ship }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </label>
+
+            <label class="h2">
+                Collector
+                <label class="switch">
+                    {{ form.collector }}
+                    <div class="slider"></div>
+                </label>
+            </label>
+            <label>The Collector will only collect if there are enough ships there to collect all resources</label>
+            <label>Collect all ressoureces at</label>
+            {{ form.collectorTime }}
+
+            <label class="h2">
+                Builder
+                <label class="switch">
+                    {{ form.builder }}
+                    <div class="slider"></div>
+                </label>
+            </label>
+            <label>
+                The Builder builds mines and facilities and
+                manages Energy on every Planet. It prioritize Fusion over Solar.
+                It stops building solar satellites on planets after Position 12
+                and if you are a miner(class) it will build crawlers.
+            </label>
+            <label>Keep an Minimum at every Planet</label>
+            <label>
+                <div class="table">
+                    <div class="ships h4">
+                        <b>Fleet</b>
+                        {% include 'empire/tableheader/fleetheader.html' %}
+                    </div>
+                    <div class="ships">
+                        <b>amount</b>
+                        {% for ship in builderFleet %}
+                            {{ ship }}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="table">
+                    <div class="defences h4">
+                        <b>Defence</b>
+                        {% include 'empire/tableheader/defenceheader.html' %}
+                    </div>
+                    <div class="defences">
+                        <b>amount</b>
+                        {% for defence in builderdefences %}
+                            {{ defence }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </label>
+
+            <label>
+                <input type="submit" value="Submit" class="button">
+            </label>
+        </form>
+    </main>
+{% endblock main %}

@@ -1,0 +1,9 @@
+{% for post in forum %}
+    {% if post.user == user %}
+        <span class="user">{{ post.user }}</span>
+    {% else %}
+        <span>{{ post.user }}</span>
+    {% endif %}
+    <span class="time">{{ post.time }}</span>
+    <span>{{ post.message }}</span>
+{% endfor %}

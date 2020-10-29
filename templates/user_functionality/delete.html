@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/user_functionality.css' %}">
+    <main>
+        <form method="post" class="whiteborder">
+            {% csrf_token %}
+            <label class="h3 underline">I Want to delete my account</label>
+
+            <label>
+                <input type="submit" value="DELETE" class="button">
+            </label>
+        </form>
+    </main>
+{% endblock main %}

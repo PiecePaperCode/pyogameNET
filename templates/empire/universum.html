@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/empire.css' %}">
+    <main>
+        <h2>Universum</h2>
+        {% if universum %}
+            {% for universe in universum %}
+                <div class="universum whiteborder">
+                    <span class="h2">{{ universe.name }}</span>
+                    <div>
+                        <p>Name: {{ universe.name }}</p>
+                        <p>Rank: {{ universe.rank }}</p>
+                        <p>Blocked: {{ universe.blocked }}</p>
+                    </div>
+                    <a href="{% url 'bot/settings' uni=universe.name %}" class="button">BotSettings</a>
+                    <a href="{% url 'empireView' uni=universe.name %}" class="button">EmpireView</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            {% if message %}
+                {% for class, text in message.items %}
+                    <div class="{{ class }}">{{ text }}</div>
+                {% endfor %}
+            {% else %}
+                <div class="Warning">Please Refresh</div>
+            {% endif %}
+            <div class="universum"></div>
+        {% endif %}
+        <a href="{% url 'empire/refresh' %}" class="button" onclick=startloading()>Refresh</a>
+    </main>
+{% endblock main %}

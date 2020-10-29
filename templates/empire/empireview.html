@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/empire.css' %}">
+    <main>
+        {% if message %}
+            {% for class, text in message.items %}
+                <div class="{{ class }}">{{ text }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <h2>{{ universum }}</h2>
+
+        <h3>Celestials</h3>
+        <a href="{% url 'refresh/celestial' uni=universum %}" class="button" onclick=startloading()>Refresh</a>
+        <div class="table">
+            <div class="celestials underline h4 table_title">
+                <b>Name</b>
+                <b class="text_center">Coords</b>
+                <b class="text_center">Metall</b>
+                <b class="text_center">Crystal</b>
+                <b class="text_center">Deuterium</b>
+                <b class="text_center">Energy</b>
+                <b class="text_center"></b>
+                <b class="text_center"></b>
+            </div>
+            {% for celestial in celestials %}
+                <div class="celestials">
+                    <b>
+                        {% if  celestial.coordintate.3 == 1 %}
+                            <img src="{% static 'svg/planet.svg' %}" alt="ship" class="planeticon">
+                        {% else %}
+                            <img src="{% static 'svg/moon.svg' %}" alt="ship" class="planeticon">
+                        {% endif %}
+                        {{ celestial.name}}
+                    </b>
+                    <p class="text_center">
+                        [{{ celestial.coordintate.0 }}:{{ celestial.coordintate.1 }}:{{ celestial.coordintate.2 }}]
+                    </p>
+                    <p class="text_center">{{ celestial.metal }}</p>
+                    <p class="text_center">{{ celestial.crystal }}</p>
+                    <p class="text_center">{{ celestial.deuterium }}</p>
+                    {% if  '-' in celestial.energy %}
+                        <p style="color: red" class="text_center">{{ celestial.energy }}</p>
+                    {% else %}
+                        <p class="text_center">{{ celestial.energy }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <h3>Buildings</h3>
+        <a href="{% url 'refresh/building' uni=universum %}" class="button" onclick=startloading()>Refresh</a>
+        <div class="table">
+            <div class="buildings underline h4">
+                <b>Name</b>
+                {% include 'empire/tableheader/buildingheader.html' %}
+            </div>
+            {% for celestial in celestials %}
+                <div class="buildings">
+                    <b>
+                        {% if  celestial.coordintate.3 == 1 %}
+                            <img src="{% static 'svg/planet.svg' %}" alt="ship" class="planeticon">
+                        {% else %}
+                            <img src="{% static 'svg/moon.svg' %}" alt="ship" class="planeticon">
+                        {% endif %}
+                        {{ celestial.name}}
+                    </b>
+                    <p class="text_center">{{ celestial.buildings.metal_mine }}</p>
+                    <p class="text_center">{{ celestial.buildings.crystal_mine }}</p>
+                    <p class="text_center">{{ celestial.buildings.deuterium_mine }}</p>
+                    <p class="text_center">{{ celestial.buildings.fusion_plant }}</p>
+                    <p class="text_center">{{ celestial.buildings.metal_storage }}</p>
+                    <p class="text_center">{{ celestial.buildings.crystal_storage }}</p>
+                    <p class="text_center">{{ celestial.buildings.deuterium_storage }}</p>
+                    <p class="text_center">{{ celestial.buildings.robotics_factory }}</p>
+                    <p class="text_center">{{ celestial.buildings.shipyard }}</p>
+                    <p class="text_center">{{ celestial.buildings.research_laboratory }}</p>
+                    <p class="text_center">{{ celestial.buildings.alliance_depot}}</p>
+                    <p class="text_center">{{ celestial.buildings.missile_silo }}</p>
+                    <p class="text_center">{{ celestial.buildings.nanite_factory }}</p>
+                    <p class="text_center">{{ celestial.buildings.terraformer }}</p>
+                    <p class="text_center">{{ celestial.buildings.repair_dock }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <h3>Ships</h3>
+        <a href="{% url 'refresh/ship' uni=universum %}" class="button" onclick=startloading()>Refresh</a>
+        <div class="table">
+            <div class="ships underline h4">
+                <b>Name</b>
+                {% include 'empire/tableheader/fleetheader.html' %}
+            </div>
+            {% for celestial in celestials%}
+                <div class="ships">
+                    <b>
+                        {% if  celestial.coordintate.3 == 1 %}
+                            <img src="{% static 'svg/planet.svg' %}" alt="ship" class="planeticon">
+                        {% else %}
+                            <img src="{% static 'svg/moon.svg' %}" alt="ship" class="planeticon">
+                        {% endif %}
+                        {{ celestial.name}}
+                    </b>
+                        <p class="text_center">{{ celestial.ships.small_transporter }}</p>
+                        <p class="text_center">{{ celestial.ships.large_transporter }}</p>
+                        <p class="text_center">{{ celestial.ships.colonyShip }}</p>
+                        <p class="text_center">{{ celestial.ships.recycler }}</p>
+                        <p class="text_center">{{ celestial.ships.light_fighter }}</p>
+                        <p class="text_center">{{ celestial.ships.heavy_fighter }}</p>
+                        <p class="text_center">{{ celestial.ships.cruiser }}</p>
+                        <p class="text_center">{{ celestial.ships.battleship }}</p>
+                        <p class="text_center">{{ celestial.ships.interceptor }}</p>
+                        <p class="text_center">{{ celestial.ships.bomber }}</p>
+                        <p class="text_center">{{ celestial.ships.destroyer }}</p>
+                        <p class="text_center">{{ celestial.ships.deathstar }}</p>
+                        <p class="text_center">{{ celestial.ships.reaper }}</p>
+                        <p class="text_center">{{ celestial.ships.explorer }}</p>
+                        <p class="text_center">{{ celestial.ships.espionage_probe }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <h3>Defences</h3>
+        <a href="{% url 'refresh/defence' uni=universum %}" class="button" onclick=startloading()>Refresh</a>
+        <div class="table">
+            <div class="defences underline h4">
+                <b>Name</b>
+                {% include 'empire/tableheader/defenceheader.html' %}
+            </div>
+            {% for celestial in celestials %}
+                <div class="defences">
+                    <b>
+                        {% if  celestial.coordintate.3 == 1 %}
+                            <img src="{% static 'svg/planet.svg' %}" alt="ship" class="planeticon">
+                        {% else %}
+                            <img src="{% static 'svg/moon.svg' %}" alt="ship" class="planeticon">
+                        {% endif %}
+                        {{ celestial.name}}
+                    </b>
+                        <p class="text_center">{{ celestial.defences.rocket_launcher }}</p>
+                        <p class="text_center">{{ celestial.defences.laser_cannon_light }}</p>
+                        <p class="text_center">{{ celestial.defences.laser_cannon_heavy }}</p>
+                        <p class="text_center">{{ celestial.defences.gauss_cannon }}</p>
+                        <p class="text_center">{{ celestial.defences.ion_cannon }}</p>
+                        <p class="text_center">{{ celestial.defences.plasma_cannon }}</p>
+                        <p class="text_center">{{ celestial.defences.shield_dome_small }}</p>
+                        <p class="text_center">{{ celestial.defences.shield_dome_large }}</p>
+                        <p class="text_center">{{ celestial.defences.missile_interceptor }}</p>
+                        <p class="text_center">{{ celestial.defences.missile_interplanetary }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <h3>Bot Log</h3>
+        <div class="terminal">
+            {% for log in logger %}
+                <p class="log"><span style="color: var(--green);">>>></span> {{ log.message }}</p>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock main %}

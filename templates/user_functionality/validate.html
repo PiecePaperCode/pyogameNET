@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style/user_functionality.css' %}">
+    <main>
+        <form method="post" class="whiteborder">
+            {% csrf_token %}
+            <label class="h2">Validate your Account</label>
+
+            {% if message %}
+                {% for class, text in message.items %}
+                    <label class="{{ class }}">{{ text }}</label>
+                {% endfor %}
+            {% endif %}
+
+            {{ form }}
+
+            <label>
+                <input type="submit" value="Validate" class="button">
+            </label>
+        </form>
+    </main>
+{% endblock main %}

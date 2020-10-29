@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+    <meta http-equiv="refresh" content="300" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style/forum.css' %}">
+    <main>
+        <h2>Forum</h2>
+        <div class="whiteborder forum" id="forum">
+            {% if message %}
+                {% for class, text in message.items %}
+                    <label class="{{ class }}">{{ text }}</label>
+                {% endfor %}
+            {% endif %}
+            <p class="log" id="log">
+                {{ chat }}
+            </p>
+        </div>
+        <form method="post" class="post whiteborder">
+            {% csrf_token %}
+            {{ form.message }}
+            <label>
+                <input type="submit" value="Post" class="button">
+            </label>
+        </form>
+    </main>
+
+    <script>
+        var objDiv = document.getElementById("forum");
+        objDiv.scrollIntoView(false);
+
+        function updatechat(){
+                    fetch('/forum/chat').then(function (response) {
+            // The API call was successful!
+	        return response.text();
+            }).then(function (data) {
+                // This is the JSON from our response
+                document.getElementById('log').innerHTML = data;
+            }).catch(function (err) {
+                // There was an error
+                console.warn('Something went wrong.', err);
+            });
+        }
+        updatechat();
+        setInterval(function(){ updatechat(); }, 1000);
+    </script>
+{% endblock main %}

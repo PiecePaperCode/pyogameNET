@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%  block main %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/about.css' %}">
+    <main>
+        <div class="about">
+            <div class="form box">
+                 <h3>A new Player hits the Scene</h3>
+                 <p>
+                     There has not been a easy to use Bot for Ogame. Now in 2020 pyogame.net offers an ease to use
+                     Interface to make your experience easy to Bot in Ogame. With the use of 100+ Proxys the Bot is
+                     hidden from Ogame and will do your daily tasks for you. If you are more interested visit the
+                     Github Page and see what technology this website is founded on. In our Discord you can make
+                     suggestions and take part on our awesome Community. The bot is hosted on the Cloud so it makes
+                     it pretty easy to use it with your Ogame Account.
+                 </p>
+            </div>
+             <div class="form box">
+                 <h3>Empire Overview</h3>
+                 <img src="{% static 'img/empireoverview.png' %}" alt="empireoverview"/>
+                 <p>
+                     The overview gives you an easy view over your Ogame empire. Almost all information of your
+                     Ogame account in one page. It makes it easy to keep an overview over your empire and make plans
+                     how to configure the bot.
+                 </p>
+            </div>
+            <div class="form box">
+                <h3>Advanced Bot Settings</h3>
+                <img src="{% static 'img/botsettings.png' %}" alt="advanced"/>
+                 <p>
+                     Control all your botsettings in one page. Simple to use and easy to configure you can set up
+                     the bot and tell it what you want it to do for you on your Ogame account. Tell it witch planet it
+                     should operate and change it as necessary.
+                 </p>
+            </div>
+            <div class="form box">
+                <h3>Secured with Proxys</h3>
+                <img src="{% static 'img/proxy.png' %}" alt="proxy"/>
+                <p>
+                    The bot is hosted on the cloud. To protect the server the bot routes all its traffic thought
+                    hounderts of proxy located all over the world. These are premium proxys so Ogame wont see them as is.
+                    Just be aware by using this service Ogame will notice a fluctuation of IP addresses but its not
+                    different as using a VPN to play the game. If they would start banning accounts just because they use
+                    an anon service they would hurt a lot of legitimate players as well. As of the start of 2020 no account
+                    that was running by the bot got banned even that other player called for it.
+                </p>
+            </div>
+            <div class="form box">
+                <img class="icon" src="{% static 'svg/free.svg' %}" alt="proxy"/>
+                <p>
+                    I run this website because i am currently learning webprogramming. So as the features and the service
+                    increases so are my programming skills. I dont plan to monetize on this website. If you want to
+                    contribute contact me on discord or on the forum inside the website.
+                </p>
+            </div>
+            <div class="form box">
+                <h3>Join Discord</h3>
+                <a class="link" href="https://discord.gg/CeBDgnR">
+                    <img class="icon" src="{% static 'svg/discord.svg' %}" alt="botsettings"/>
+                </a>
+            </div>
+            <div class="form box">
+                <h3>Github</h3>
+                <a class="link" href="https://github.com/PiecePaperCode/pyogameNET">
+                    <img class="icon" src="{% static 'svg/github.svg' %}" alt="Github"/>
+                </a>
+            </div>
+            <div class="form box" style="visibility: hidden;">
+                <h3>Buy me Coffee</h3>
+                <a class="link" href="https://paypal.me/MarcosGam?locale.x=de_DE">
+                    <img class="icon" src="{% static 'svg/coffee.svg' %}" alt="botsettings"/>
+                </a>
+            </div>
+        </div>
+
+    </main>
+{% endblock main %}

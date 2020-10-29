@@ -1,0 +1,125 @@
+@media only screen and (min-width: 630px){
+    main{
+        grid-template-columns: 1fr;
+    }
+    .universum{
+        width: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1rem;
+    }
+    .celestials{
+        grid-template-columns: 8rem repeat(5, 1fr);
+    }
+    .buildings{
+        grid-template-columns: 8rem repeat(16, 1fr);
+    }
+    .ships{
+        grid-template-columns: 8rem repeat(15, 1fr);
+    }
+    .defences{
+        grid-template-columns: 8rem repeat(10, 1fr);
+    }
+    .icon{
+        height: 40px;
+        width: 40px;
+    }
+}
+@media only screen and (max-width: 630px){
+    main{
+        margin: auto;
+        width: auto;
+        max-width: 400px;
+        overflow-x: hidden;
+    }
+    b, .table, .log{
+        font-size: 0.6rem;
+    }
+    h2{
+        margin: 0;
+    }
+    .universum{
+        margin-bottom: 20px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 5px;
+        padding: 1rem;
+    }
+    .table{
+        width: 90%;
+    }
+    .log{
+        margin-bottom: 5px;
+    }
+    form{
+        overflow-x: hidden;
+    }
+    .celestials{
+        grid-template-columns: 4rem repeat(5, 1fr);
+    }
+    .buildings{
+        grid-template-columns: 4rem repeat(16, 1fr);
+    }
+    .ships{
+        grid-template-columns: 4rem repeat(15, 1fr);
+    }
+    .defences{
+        grid-template-columns: 4rem repeat(10, 1fr);
+    }
+    .icon{
+        height: auto;
+        width: 1fr;
+    }
+}
+.text_center{
+    text-align: center;
+}
+.table{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+}
+.table:first-child:hover{
+    color: black;
+    background-color: var(--light);
+}
+.terminal{
+    width: 100%;
+    color: var(--white);
+    background-color: black;
+    border-radius: 3px;
+}
+.log{
+    text-align: left;
+    padding-left: 1rem;
+}
+.celestials, .ships, .defences, .buildings{
+    display: grid;
+    grid-template-rows: 1fr;
+    text-align: left;
+}
+.icon{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+}
+.planeticon{
+    height: 15px;
+    width: 15px;
+}
+.celestials:nth-child(2n), .ships:nth-child(2n), .defences:nth-child(2n), .buildings:nth-child(2n){
+    background-color: #e3e3e3;
+}
+.celestials:hover,
+.buildings:hover,
+.ships:hover,
+.defences:hover,
+.celestials:nth-child(2n):hover,
+.buildings:nth-child(2n):hover,
+.ships:nth-child(2n):hover,
+.defences:nth-child(2n):hover{
+    color: var(--white);
+    background-color: var(--blue);
+    cursor: cell;
+}

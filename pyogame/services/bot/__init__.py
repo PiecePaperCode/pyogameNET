@@ -1,0 +1,1 @@
+from pyogame.services.bot import ogame, scheduler, settings

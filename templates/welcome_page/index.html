@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%  block main %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/index.css' %}">
+    <main>
+        <div class="welcome">
+            <h1 class="title">
+                pyogame
+                <img src="{% static 'svg/logo.svg' %}" alt="bot" style="height: 120px; width: 120px"/>
+            </h1>
+            <p class="h4">
+                There has not been a easy to use Bot for Ogame. Now in 2020 pyogame.net offers an ease to use
+                Interface to make your experience easy to Bot in Ogame. With the use of 100+ Proxys the Bot is
+                hidden from Ogame and will do your daily tasks for you and the best part, its free.
+            </p>
+            <h4>
+                Currently running Bots 🟢 {{ runningBots }}
+            </h4>
+            <div class="actions">
+                <a href="{% url 'about' %}" class="button">Learn more</a>
+                <a href="{% url 'register' %}" class="button">Join Now</a>
+            </div>
+        </div>
+    </main>
+{% endblock main %}

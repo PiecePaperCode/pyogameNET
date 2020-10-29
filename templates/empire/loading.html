@@ -1,0 +1,41 @@
+{% load static %}
+
+<div style="
+        position: fixed;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        visibility: hidden;">
+    <img
+        id="loading"
+        style="
+        margin: auto;
+        visibility: hidden;
+        height: 30%;
+        width: 30%;
+        position: relative;
+        left: 35%;
+        right: 35%;
+        top: 35%;
+        bottom: 35%;
+        z-index: 1;
+        "
+        src="{% static 'svg/loading.svg' %}"
+        alt="loading"
+    >
+</div>
+
+
+<script>
+    function startloading() {
+        document.getElementById('loading').style.visibility = 'visible'
+        document.getElementById('loading').style.animationName = 'loading_animation'
+        document.getElementById('loading').style.animationDuration = '3s'
+        document.getElementById('loading').style.animationIterationCount= 'infinite'
+        document.getElementsByTagName('main')[0].style.opacity = 0.2
+        document.getElementsByTagName('main')[0].style.zIndex = 99
+        document.getElementById('loading').style.opacity = 1
+    }
+</script>

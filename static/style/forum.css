@@ -1,0 +1,53 @@
+main{
+    width: 100%;
+    grid-template-columns: 1fr;
+}
+form{
+    margin: 0;
+    padding: 0;
+}
+input{
+    width: 99%
+}
+label{
+    padding: 0;
+    margin: 0;
+    width: 99%;
+}
+.forum{
+    height: 50vh;
+    width: 90%;
+    margin: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+@media only screen and (min-width: 630px){
+    .log{
+        grid-template-columns: 2fr 3fr 8fr;
+        grid-template-rows: 1fr;
+    }
+}
+@media only screen and (max-width: 630px){
+    .log{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr
+                            1fr
+                            1fr;
+    }
+}
+.log{
+    display: grid;
+    gap: 0.5rem;
+}
+.post{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    gap: 1rem;
+}
+.time{
+    color: var(--gray-dark);
+}
+.user{
+    font-weight: bold;
+}

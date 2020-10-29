@@ -1,0 +1,11 @@
+main{
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+form{
+    margin: auto;
+    width: 40rem;
+    max-width: 500px;
+    grid-column: 1;
+    grid-row: 1;
+}

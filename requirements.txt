@@ -1,0 +1,4 @@
+Django~=3.1.1
+ogame~=7.3.0.16
+requests~=2.23.0
+cryptography~=3.1.1

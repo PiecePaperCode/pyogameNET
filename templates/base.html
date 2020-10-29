@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'style/base.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="
+        There has not been a easy to use Bot for Ogame. Now in 2020 pyogame.net offers an ease to use
+        Interface to make your experience easy to Bot in Ogame. With the use of 100+ Proxys the Bot is
+        hidden from Ogame and will do your daily tasks for you and the best part, its free.
+    ">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'svg/logo.svg' %}">
+    <title>pyogame {{ title }}</title>
+</head>
+<body>
+    {% include 'empire/loading.html' %}
+    <header></header>
+    <nav>
+        <div class="rightnav">
+            <a href="{% url 'index' %}" class="nav logo"><img class="" src="/static/img/logo_white.png" alt="logo"></a>
+            <a href="{% url 'index' %}" class="nav h4">pyogame</a>
+            <a href="{% url 'about' %}" class="nav">About</a>
+        </div>
+        <div class="leftnav">
+            {% if user.is_authenticated %}
+                <a href="{% url 'forum' %}" class="nav">Forum</a>
+                <a href="{% url 'empire' %}" class="nav">Empire</a>
+                <a href="{% url 'empire/settings' %}" class="nav">Settings</a>
+                <a href="{% url 'profile' %}" class="nav">{{ request.user.username }}</a>
+                <a href="{% url 'logout' %}" class="nav">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="nav">Login</a>
+                <a href="{% url 'register' %}" class="nav">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    {% block main %}{% endblock %}
+
+</body>
+</html>

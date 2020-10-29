@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/user_functionality.css' %}">
+    <main>
+        <form method="post" class="whiteborder">
+            {% csrf_token %}
+            <label class="h2">Settings</label>
+            <label class="h3 underline">Ogame Credentials</label>
+
+            {% if message %}
+                {% for class, text in message.items %}
+                    <label class="{{ class }}">{{ text }}</label>
+                {% endfor %}
+            {% endif %}
+
+            {{ form }}
+
+            <label class="small"><p>your Credentials are encrypted</p><p>2 Factor Auth must be off</p></label>
+
+            <label>
+                <input type="submit" value="Update" class="button">
+            </label>
+        </form>
+    </main>
+{% endblock main %}
